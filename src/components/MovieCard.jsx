@@ -2,15 +2,17 @@ import { Link } from "react-router-dom";
 
 const MovieCard = ({ movie }) => {
 
-    console.log(movie);
+    const { id, title, director, abstract, imagePath, reviews_vote } = movie;
 
     return (
         <div className="card" >
-            <img src="..." className="card-img-top" alt="..." />
+            <img src={imagePath} className="card-img-top w-50 mx-auto" alt={title} />
             <div className="card-body">
-                <h5 className="card-title">{movie.title}</h5>
-                <p className="card-text">{movie.abstract}</p>
-                <Link to={`/movie/${movie.id}`} className="btn btn-primary">dettaglio del film</Link>
+                <h5 className="card-title">{title}</h5>
+                <p>Director: <strong>{director}</strong></p>
+                <p>Average vote: <strong>{reviews_vote}</strong></p>
+                <p className="card-text">{abstract}</p>
+                <Link to={`/movies/${id}`} className="btn btn-primary">dettaglio del film</Link>
             </div>
         </div>
     )
