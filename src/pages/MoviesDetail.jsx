@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ReviewCard from "../components/ReviewCard";
+import StarRating from "../components/StarRating";
 
 const MoviesDetailPage = () => {
 
@@ -44,7 +45,7 @@ const MoviesDetailPage = () => {
             <section id="review" className="container mt-4">
                 <header className="d-flex justify-content-between align-items-center">
                     <h4>Community reviews</h4>
-                    <div>Average vote: {movie.reviews_vote}</div>
+                    <div>Average vote: {<StarRating vote={movie.reviews_vote} />}</div>
                 </header>
                 {movie.reviews?.length ?
                     renderReviews()
