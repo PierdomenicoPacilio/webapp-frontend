@@ -33,7 +33,7 @@ const MoviesPage = () => {
     return (
         <>
             <h1>Movies</h1>
-            <div className="d-flex justify-content-between">
+            <div className="d-flex justify-content-between mt-4">
                 <h2>Movies List</h2>
                 <form className="row g-3" onSubmit={searchMovies}>
                     <div className="col-auto">

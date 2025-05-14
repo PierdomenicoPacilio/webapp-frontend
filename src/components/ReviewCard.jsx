@@ -6,11 +6,16 @@ const ReviewCard = ({ data }) => {
 
     return (
         <>
-            <div className="card mt-4">
+            <div className="card mt-4 shadow-sm border-0">
                 <div className="card-body">
-                    <p>{text}</p>
-                    <p>Vote: <StarRating vote={vote} /></p>
-                    <p>By: {name}</p>
+                    <p className="mb-2 fst-italic">"{text}"</p>
+                    <div className="d-flex align-items-center justify-content-between">
+                        <div>
+                            <span className="fw-bold me-2">Vote:</span>
+                            <StarRating vote={vote} />
+                        </div>
+                        <div className="text-muted small">– {name}</div>
+                    </div>
                 </div>
             </div>
         </>

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ReviewCard from "../components/ReviewCard";
 import StarRating from "../components/StarRating";
+import ReviewForm from "../components/ReviewForm";
 
 const MoviesDetailPage = () => {
 
@@ -30,26 +31,41 @@ const MoviesDetailPage = () => {
 
     return (
         <>
-            <div className="container row">
-                <div className="col-6">
-                    <h1>{movie.title}</h1>
-                    <img className="w-50 mt-2" src={movie.imagePath} alt={movie.title} />
-                </div>
-                <div className="col-6 d-flex flex-column justify-content-center">
-                    <p>year: <strong>{movie.release_year}</strong></p>
-                    <p>genre: <strong>{movie.genre}</strong></p>
-                    <p>director: <strong>{movie.director}</strong></p>
-                    <p>{movie.abstract}</p>
+            <div className="container my-5">
+                <div className="row align-items-center">
+                    <div className="col-md-6 text-center mb-4 mb-md-0">
+                        <img className="img-fluid rounded shadow" src={movie.imagePath}
+                            alt={movie.title} style={{ maxHeight: "400px", objectFit: "cover" }} />
+                    </div>
+                    <div className="col-md-6 d-flex flex-column justify-content-center">
+                        <h1 className="mb-3">{movie.title}</h1>
+                        <p>Year: <strong>{movie.release_year}</strong></p>
+                        <p>Genre: <strong>{movie.genre}</strong></p>
+                        <p>Director: <strong>{movie.director}</strong></p>
+                        <p className="mt-3">{movie.abstract}</p>
+                    </div>
                 </div>
             </div>
-            <section id="review" className="container mt-4">
-                <header className="d-flex justify-content-between align-items-center">
-                    <h4>Community reviews</h4>
-                    <div>Average vote: {<StarRating vote={movie.reviews_vote} />}</div>
+
+            <section id="review" className="container mt-5">
+                <header className="d-flex justify-content-between align-items-center border-bottom pb-2 mb-3">
+                    <h4 className="mb-0">Community Reviews</h4>
+                    <div className="text-end">
+                        <small className="text-muted d-block">Average vote:</small>
+                        <StarRating vote={movie.reviews_vote} />
+                    </div>
                 </header>
-                {movie.reviews?.length ?
+
+                {movie.reviews?.length > 0 ? (
                     renderReviews()
-                    : <div>nessuna recensione</div>}
+                ) : (
+                    <div className="text-muted fst-italic">No reviews yet – be the first to leave one!</div>
+                )}
+            </section>
+
+            <section className="container mt-5" id="addReview">
+                <h5 className="mb-3">Leave your review</h5>
+                <ReviewForm movie_id={id} refreshMovie={getMovie} />
             </section>
         </>
     )
