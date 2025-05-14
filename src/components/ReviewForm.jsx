@@ -52,7 +52,6 @@ const ReviewForm = ({ movie_id, refreshMovie }) => {
                         <label htmlFor="reviewVote" className="form-label">Your Vote</label>
                         <select className="form-select" id="reviewVote" name="vote"
                             value={formData.vote} onChange={setFieldValue} required >
-                            <option value="">Select a rating</option>
                             <option value="1">⭐</option>
                             <option value="2">⭐ ⭐</option>
                             <option value="3">⭐ ⭐ ⭐</option>
